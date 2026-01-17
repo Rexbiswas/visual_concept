@@ -647,4 +647,117 @@
     .legal-links a {
         font-size: 0.8rem;
     }
+
+    /* --- Features Page Responsive --- */
+
+    /* Tablets & Small Laptops (max-width: 1024px) */
+    @media (max-width: 1024px) {
+        .features-hero {
+            height: 50vh;
+        }
+
+        .feature-showcase {
+            padding: 50px 5%;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 columns */
+        }
+
+        .center-circle {
+            width: 500px;
+            height: 500px;
+        }
+
+        .center-circle.inner {
+            width: 350px;
+            height: 350px;
+        }
+    }
+
+    /* Tablets (max-width: 768px) */
+    @media (max-width: 768px) {
+        .features-container {
+            padding-top: 80px;
+        }
+
+        .features-title {
+            font-size: 3rem;
+            /* Smaller hero title */
+        }
+
+        .features-subtitle {
+            font-size: 1rem;
+        }
+
+        .feature-showcase {
+            grid-template-columns: 1fr;
+            /* Stack cards vertically */
+            gap: 30px;
+        }
+
+        .interative-center {
+            height: 60vh;
+        }
+
+        .center-circle {
+            width: 400px;
+            height: 400px;
+        }
+
+        .center-circle.inner {
+            width: 280px;
+            height: 280px;
+        }
+
+        .center-content h2 {
+            font-size: 2rem;
+        }
+    }
+
+    /* Mobile (max-width: 480px) */
+    @media (max-width: 480px) {
+        .features-hero {
+            height: 40vh;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            line-height: 1.1;
+        }
+
+        .feature-card {
+            padding: 25px;
+            min-height: auto;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .center-circle {
+            width: 300px;
+            height: 300px;
+            border-width: 1px;
+        }
+
+        .center-circle.inner {
+            width: 200px;
+            height: 200px;
+        }
+
+        .center-content {
+            padding: 20px;
+        }
+
+        .center-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .tech-details-list li {
+            font-size: 0.8rem;
+        }
+    }
 }

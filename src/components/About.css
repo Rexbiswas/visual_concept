@@ -1,0 +1,1026 @@
+.about-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #050505;
+    color: #fff;
+    padding-top: 120px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- Hero Section --- */
+.about-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 5%;
+}
+
+.about-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    mix-blend-mode: difference;
+}
+
+.about-title span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+    transition: 0.5s;
+}
+
+.about-title span:hover {
+    -webkit-text-stroke: 2px cyan;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.about-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: cyan;
+    letter-spacing: 5px;
+    margin-top: 30px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.about-subtitle::before,
+.about-subtitle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 1px;
+    background: cyan;
+}
+
+.about-subtitle::before {
+    left: -70px;
+}
+
+.about-subtitle::after {
+    right: -70px;
+}
+
+/* --- Glitch Effect Background --- */
+.hero-glitch-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.05) 2px,
+            rgba(0, 255, 255, 0.05) 4px);
+    z-index: 1;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* --- Split Section (Unexpected) --- */
+.split-section {
+    display: flex;
+    min-height: 80vh;
+    position: relative;
+    margin: 100px 0;
+}
+
+.split-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.split-side.left {
+    background: #0a0a0a;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.split-side.right {
+    background: #000;
+}
+
+.section-header h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-header p {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+
+
+/* --- Global Presence / Map Map Section --- */
+.global-section {
+    padding: 100px 5%;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(0, 20, 20, 1) 0%, rgba(5, 5, 5, 1) 70%);
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    /* Corner decorations */
+    clip-path: polygon(0 0,
+            20px 0,
+            20px 5px,
+            calc(100% - 20px) 5px,
+            calc(100% - 20px) 0,
+            100% 0,
+            100% 20px,
+            calc(100% - 5px) 20px,
+            calc(100% - 5px) calc(100% - 20px),
+            100% calc(100% - 20px),
+            100% 100%,
+            calc(100% - 20px) 100%,
+            calc(100% - 20px) calc(100% - 5px),
+            20px calc(100% - 5px),
+            20px 100%,
+            0 100%,
+            0 calc(100% - 20px),
+            5px calc(100% - 20px),
+            5px 20px,
+            0 20px);
+}
+
+.holographic-map {
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    perspective: 1000px;
+    position: relative;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
+}
+
+.map-grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(90deg, transparent, transparent 99px, rgba(0, 255, 255, 0.1) 99px, rgba(0, 255, 255, 0.1) 100px),
+        repeating-linear-gradient(180deg, transparent, transparent 99px, rgba(0, 255, 255, 0.1) 99px, rgba(0, 255, 255, 0.1) 100px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+/* Simulated "World Map" using a radial gradient mask or just simple dots could work, 
+   but here we use pure CSS shapes to suggest tech-nodes */
+.holographic-map::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70%;
+    background:
+        radial-gradient(circle at 20% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 20%),
+        /* NA */
+        radial-gradient(circle at 50% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 20%),
+        /* EU */
+        radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 25%);
+    /* ASIA */
+    opacity: 0.6;
+    filter: blur(20px);
+}
+
+.map-hotspot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.hotspot-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: cyan;
+    border-radius: 50%;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    opacity: 0.5;
+}
+
+.hotspot-pulse::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px cyan;
+}
+
+@keyframes ping {
+
+    75%,
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+.hotspot-label {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid cyan;
+    padding: 8px 15px;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.hotspot-label span {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.hotspot-label small {
+    font-family: 'Rajdhani', sans-serif;
+    color: cyan;
+    letter-spacing: 1px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.map-hotspot:hover .hotspot-label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Map Overlay Stats (Bottom) */
+.map-overlay-stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    pointer-events: none;
+}
+
+.map-stat {
+    text-align: center;
+}
+
+.map-stat h3 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2.5rem;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.map-stat p {
+    font-family: 'Rajdhani', sans-serif;
+    color: cyan;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* --- Unexpected Scroll Horizontal Section --- */
+.horizontal-scroll-container {
+    height: 300vh;
+    /* creates scrollable area */
+    position: relative;
+    background: #000;
+}
+
+.scrolling-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #050505;
+}
+
+.scroll-track {
+    display: flex;
+    gap: 50px;
+    padding: 0 5vw;
+}
+
+.scroll-panel {
+    min-width: 60vw;
+    height: 60vh;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-panel h3 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    z-index: 1;
+    position: absolute;
+}
+
+.scroll-panel-content {
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+}
+
+.scroll-panel-content h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: cyan;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.scroll-panel-content p {
+    font-family: 'Rajdhani', sans-serif;
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 400px;
+    background: #050505;
+}
+
+.timeline-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, cyan, transparent);
+    box-shadow: 0 0 10px cyan;
+    z-index: 1;
+}
+
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    position: relative;
+    /* Ensure height is determined by content, GSAP might animate from 0 so min-height helps stability */
+    min-height: 150px;
+    margin-bottom: 60px;
+    width: 50%;
+}
+
+.timeline-item.right {
+    align-self: flex-end;
+    /* This won't work in block layout without flex col, using margin-left auto */
+    margin-left: auto;
+    /* Pushes it to the right half */
+    justify-content: flex-start;
+    /* Aligns content to start of the right half */
+    padding-right: 0;
+    padding-left: 50px;
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 0;
+    position: relative;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    width: 100%;
+    border-left: 2px solid cyan;
+    overflow: hidden;
+    /* Clips grid and big numbers */
+}
+
+/* --- Slogan Break Section --- */
+.about-slogan-section {
+    padding: 200px 0;
+    background: #020202;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+}
+
+/* Speed Lines Background */
+.speed-lines-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: repeating-linear-gradient(90deg,
+            transparent 0,
+            transparent 50px,
+            rgba(0, 255, 255, 0.02) 50px,
+            rgba(0, 255, 255, 0.05) 100px);
+    transform: skewX(-45deg);
+    animation: speedMove 0.5s linear infinite;
+    z-index: 0;
+}
+
+@keyframes speedMove {
+    0% {
+        transform: translateX(0) skewX(-45deg);
+    }
+
+    100% {
+        transform: translateX(-100px) skewX(-45deg);
+    }
+}
+
+.slogan-container {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    padding: 40px 60px;
+    /* HUD Frame Background */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* HUD Corners */
+.hud-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid cyan;
+    transition: 0.3s;
+}
+
+.hud-corner.top-left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.hud-corner.top-right {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+}
+
+.hud-corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+}
+
+.hud-corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.slogan-container:hover .hud-corner {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 15px cyan;
+}
+
+.big-slogan {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(3rem, 10vw, 12rem);
+    line-height: 0.8;
+    font-weight: 900;
+    text-transform: uppercase;
+    transform: skewX(-10deg);
+    position: relative;
+}
+
+.big-slogan .outline {
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
+    display: block;
+    position: relative;
+    transition: 0.5s;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.2));
+}
+
+.big-slogan .outline:hover {
+    -webkit-text-stroke: 2px cyan;
+    /* Glitch Offset */
+    transform: translate(-5px, -2px);
+    text-shadow: 2px 2px 0px red, -2px -2px 0px blue;
+}
+
+/* CHROME TEXT EFFECT */
+.big-slogan .solid {
+    display: block;
+    position: relative;
+    background: linear-gradient(to bottom,
+            #fff 0%,
+            #aaa 50%,
+            #fff 51%,
+            #555 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8));
+    /* Shine Animation */
+    background-size: 200% 200%;
+    animation: chromeShine 5s linear infinite;
+}
+
+@keyframes chromeShine {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.slogan-meta {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Rajdhani', sans-serif;
+    color: cyan;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: skewX(-10deg);
+}
+
+/* Tech Decorative Lines */
+.tech-line-top,
+.tech-line-bottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
+}
+
+.tech-line-top {
+    top: 100px;
+}
+
+.tech-line-bottom {
+    bottom: 100px;
+}
+
+/* Background Grid Pattern for Card */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.timeline-year-big {
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+    z-index: 0;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.card-hex-deco {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: cyan;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    z-index: 1;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    background: rgba(0, 255, 255, 0.02);
+}
+
+.timeline-content h3,
+.timeline-content p {
+    position: relative;
+    z-index: 1;
+}
+
+.dot-pulse {
+    width: 100%;
+    height: 100%;
+    background: cyan;
+    border-radius: 50%;
+    animation: pulseDot 2s infinite;
+    box-shadow: 0 0 10px cyan;
+}
+
+@keyframes pulseDot {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+    }
+}
+
+.timeline-item.right .timeline-content {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 2px solid cyan;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.timeline-year {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-weight: 700;
+}
+
+.timeline-item.right .timeline-year {
+    right: auto;
+    left: 20px;
+}
+
+.timeline-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.timeline-content p {
+    font-family: 'Rajdhani', sans-serif;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 30px;
+    /* Align with top of content roughly */
+    right: -8px;
+    /* Half of width (16px) */
+    width: 16px;
+    height: 16px;
+    background: #050505;
+    border: 2px solid cyan;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 15px cyan;
+}
+
+.timeline-item.right .timeline-dot {
+    right: auto;
+    left: -8px;
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 50px;
+        margin-left: 0;
+    }
+
+    .timeline-item.right {
+        padding-left: 50px;
+        margin-left: 0;
+    }
+
+    .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 12px;
+        right: auto;
+    }
+
+    .timeline-item.right .timeline-content {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 2px solid cyan;
+    }
+
+    .timeline-item.right .timeline-year {
+        right: 20px;
+        left: auto;
+    }
+}
+
+
+
+/* SVG Connection Lines Animation */
+.connection-line {
+    stroke-dasharray: 10, 10;
+    animation: flowLine 3s linear infinite;
+}
+
+@keyframes flowLine {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+/* --- Split Section Updates (Real-Time Specs) --- */
+.split-section {
+    align-items: center;
+    /* Center vertically */
+    gap: 0;
+}
+
+.tech-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px solid cyan;
+}
+
+.tech-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5) contrast(1.2);
+    transition: 0.5s;
+}
+
+.tech-image-wrapper:hover img {
+    filter: grayscale(0) contrast(1);
+    transform: scale(1.05);
+}
+
+.img-corner-deco {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-bottom: 3px solid cyan;
+    border-right: 3px solid cyan;
+    z-index: 2;
+}
+
+.tech-text-content {
+    background: #000;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* Align right */
+    text-align: right;
+}
+
+.tech-text-content h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.tech-text-content p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: #aaa;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+/* Dashboard Styles */
+.tech-specs-dashboard {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(0, 20, 20, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 20px;
+    position: relative;
+}
+
+.spec-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: cyan;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.blink-status {
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.spec-item label {
+    display: block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.spec-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: left;
+}
+
+.cold-val {
+    color: cyan;
+}
+
+/* Progress Bar */
+.tech-progress-bg {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-progress-fill {
+    height: 100%;
+    background: cyan;
+    box-shadow: 0 0 10px cyan;
+    animation: techLoad 2s ease-in-out infinite alternate;
+}
+
+@keyframes techLoad {
+    0% {
+        width: 95%;
+    }
+
+    100% {
+        width: 99%;
+    }
+}
+
+/* Bar Chunks */
+.tech-bar-chunks {
+    display: flex;
+    gap: 2px;
+    margin-top: 5px;
+}
+
+.tech-bar-chunks span {
+    flex: 1;
+    height: 3px;
+    background: cyan;
+}
+
+/* Graph Line Placeholder */
+.tech-graph-line {
+    width: 100%;
+    height: 20px;
+    background:
+        repeating-linear-gradient(90deg, cyan, cyan 2px, transparent 2px, transparent 4px);
+    opacity: 0.5;
+    margin-bottom: 5px;
+    mask-image: linear-gradient(to right, transparent, black, transparent);
+}
+
+
+.split-side.left,
+.split-side.right {
+    padding: 0;
+    /* Removing default padding for full bleed/tight layout */
+    border: none;
+}
+
+.split-side.left h1 {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    mix-blend-mode: overlay;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* Add a subtle decorative line next to the title */
+.split-side.left h1::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: cyan;
+    margin-bottom: 10px;
+}
