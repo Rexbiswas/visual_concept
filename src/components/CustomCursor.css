@@ -1,0 +1,27 @@
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    backdrop-filter: blur(2px);
+}
+
+/* Hide default cursor only on devices that have a pointer (desktop) */
+@media (pointer: fine) {
+    /* Temporarily disabled enabling native cursor for debugging */
+    /* body {
+        cursor: none;
+    }
+    
+    a, button {
+        cursor: none;
+    } */
+}
+
+@media (pointer: coarse) {
+    .custom-cursor {
+        display: none;
+    }
+}

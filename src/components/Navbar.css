@@ -1,0 +1,201 @@
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    margin: 0;
+}
+
+nav {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    padding: 15px 30px;
+    background: rgba(5, 5, 5, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* Glowing Orbs */
+nav::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent 70%);
+    border-radius: 50%;
+    filter: blur(15px);
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    opacity: 0.8;
+}
+
+nav::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    /* Adjust position to hang off the right side */
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8), transparent 70%);
+    border-radius: 50%;
+    filter: blur(15px);
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    opacity: 0.8;
+}
+
+.logo {
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+    filter: brightness(0.7) invert(0.7) drop-shadow(0 0 5px rgba(0, 255, 255, 0.6));
+}
+
+@media (max-width: 480px) {
+    .nav-logo {
+        height: 35px;
+    }
+}
+
+.navlinks {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.navlinks ul {
+    display: flex;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+.navlinks ul li {
+    list-style: none;
+    position: relative;
+}
+
+.navlinks ul li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navlinks ul li a:hover {
+    color: cyan;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.navlinks ul li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: cyan;
+    box-shadow: 0 0 10px cyan;
+    transition: width 0.3s ease;
+}
+
+.navlinks ul li:hover::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-btn button {
+    background: rgba(255, 255, 255, 0.1);
+    color: cyan;
+    padding: 12px 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.nav-btn button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.nav-btn button:hover::before {
+    left: 100%;
+}
+
+.nav-btn button:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    text-shadow: none;
+}
+
+.nav-btn button:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.nav-btn-mobile {
+    display: none;
+}
