@@ -105,11 +105,14 @@
     }
 
     .slide-badge-container {
-        bottom: 0px;
+        bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        min-width: unset;
     }
 
     .hero-content {
@@ -142,7 +145,12 @@
 
     .tech-badge {
         justify-content: center;
-        padding: 15px;
+        padding: 10px 25px;
+        width: auto;
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
     }
 
     .slider-indicators-tech {
@@ -216,7 +224,11 @@
     }
 
     .slide-badge-container {
-        bottom: -20px;
+        bottom: -30px;
+        width: 100%;
+        left: 0;
+        transform: none;
+        min-width: auto;
     }
 
     .tech-badge {
@@ -336,9 +348,9 @@
         width: 100%;
         left: 0;
         transform: none;
-        /* Remove centering transform as width is 100% */
         display: flex;
         justify-content: center;
+        bottom: 50px;
     }
 
     .tech-badge {
@@ -349,6 +361,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
     .tech-id {

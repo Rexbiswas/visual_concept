@@ -1,0 +1,103 @@
+/* Explore Page Layout */
+.explore-container {
+    width: 100vw;
+    height: 100vh;
+    background: #050505;
+    /* Deep dark background */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    /* Tech fonts */
+    color: #fff;
+    --theme-color: #00ffff;
+    /* Default fallback */
+}
+
+/* 3D Canvas Layer */
+.video-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+
+.loading-text {
+    color: var(--theme-color);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    animation: pulse 1.5s infinite;
+}
+
+/* UI Interactive Layer (Glassmorphism) */
+.explore-ui-interactive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    /* Let clicks pass through to canvas where needed */
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Push content to bottom */
+    align-items: center;
+    /* Center content horizontally */
+}
+
+.explore-ui-interactive>* {
+    pointer-events: auto;
+    /* Re-enable clicks on UI elements */
+}
+
+/* Header */
+.ui-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ui-header h1 {
+    font-size: 6rem;
+    /* Make it HUGE */
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Lift it off background */
+}
+
+.highlight-text {
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+    /* Thicker stroke */
+}
+
+/* Removed unused View/Color/Info styles */
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .ui-header h1 {
+        font-size: 3rem;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

@@ -1,17 +1,13 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion, useMotionValue, useTransform, animate, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaPlay, FaChevronLeft, FaChevronRight, FaMicrochip, FaLeaf, FaBolt } from 'react-icons/fa';
+import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion';
+import { FaArrowRight, FaPlay, FaChevronLeft, FaChevronRight, FaMicrochip, FaBolt } from 'react-icons/fa';
 import { GiCyberEye } from 'react-icons/gi';
-
-
-import TerzoMillennio from '../assets/Terzo-Millennio.jpg';
-import Bugatti from '../assets/bugatti_la_voiture_noire.jpg';
-import Koenigsegg from '../assets/Koenigsegg_Jesko_1.jpg';
 import './Home.css';
 import './Responsive.css';
 import CustomCursor from './CustomCursor';
+import ExploreCar from './ExploreCar';
 
 const Counter = ({ from, to, duration = 2 }) => {
     const count = useMotionValue(from);
@@ -117,22 +113,13 @@ const ParallaxCard = ({ children, speed = 10, className }) => {
     );
 };
 
+
+
+const LamboModel = new URL('../assets/lamborghini_terzo_millennio.glb', import.meta.url).href;
+const BugattiModel = new URL('../assets/bugatti_-_la_voiture_noire.glb', import.meta.url).href;
+const KoenigseggModel = new URL('../assets/2019__koenigsegg_jesko.glb', import.meta.url).href;
+
 const Home = () => {
-    // 3D Holographic Tilt Logic
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const rotateX = useTransform(y, [0, window.innerHeight], [10, -10]);
-    const rotateY = useTransform(x, [0, window.innerWidth], [-10, 10]);
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            x.set(e.clientX);
-            y.set(e.clientY);
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [x, y]);
-
     const fadeUp = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -160,23 +147,29 @@ const Home = () => {
     const slides = [
         {
             id: '01',
-            name: 'Lamborghini-[Terzo-Millennio]',
+            brand: 'Lamborghini',
+            modelName: 'Terzo-Millennio',
             accent: '#00ffff',
-            img: TerzoMillennio,
+            model: LamboModel,
+            modelScale: 2.5,
             stats: { acceleration: 2.9, topSpeed: 350, range: 450 }
         },
         {
             id: '02',
-            name: 'Bugatti-[La-voiture-noire]',
+            brand: 'Bugatti',
+            modelName: 'La Voiture Noire',
             accent: '#b026ff',
-            img: Bugatti,
-            stats: { acceleration: 2.4, topSpeed: 420, range: 500 }
+            model: BugattiModel,
+            modelScale: 0.04,
+            stats: { acceleration: 2.5, topSpeed: 420, range: 500 }
         },
         {
             id: '03',
-            name: 'Koenigsegg-[Jesko]',
+            brand: 'Koenigsegg',
+            modelName: 'Jesko',
             accent: '#ff003c',
-            img: Koenigsegg,
+            model: KoenigseggModel,
+            modelScale: 1.9,
             stats: { acceleration: 2.5, topSpeed: 480, range: 600 }
         },
     ];
@@ -271,51 +264,51 @@ const Home = () => {
             <div className="home-container">
                 <section className="hero-section">
                     {/* Image Above */}
-                    <div className="hero-image-wrapper">
+                    <div className="hero-image-wrapper" style={{ position: 'relative', overflow: 'hidden' }}>
+                        {/* Persistent 3D Background */}
+                        <div className="model-3d-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+                            <ExploreCar modelPath={slides[currentSlide].model} scale={slides[currentSlide].modelScale} />
+                        </div>
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentSlide}
                                 className="hero-bg"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
+                                style={{ background: 'transparent', zIndex: 1, pointerEvents: 'none' }}
                             >
-                                <motion.img
-                                    src={slides[currentSlide].img}
-                                    alt={slides[currentSlide].name}
-                                    style={{
-                                        // Filter removed to allow real images to dictate color
-                                        rotateX: rotateX,
-                                        rotateY: rotateY,
-                                        perspective: 1000
-                                    }}
-                                    animate={{
-                                        y: [-15, 15, -15],
-                                    }}
-                                    transition={{
-                                        y: {
-                                            duration: 6,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
-                                        }
-                                    }}
-                                />
+                                {/* Only show image if no model, or keep hidden if model exists (user asked to replace image) */}
+
                                 <motion.div
                                     className="slide-badge-container"
                                     initial={{ opacity: 0, x: -50 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.3, type: "spring" }}
+                                    style={{ pointerEvents: 'auto' }}
                                 >
                                     <div className="tech-badge">
                                         <span className="tech-id">{slides[currentSlide].id}</span>
                                         <span className="tech-name">
-                                            {slides[currentSlide].name.split(" ")[0]} <span style={{ color: slides[currentSlide].accent }}>{slides[currentSlide].name.split(" ")[1]}</span>
+                                            {slides[currentSlide].brand} <span style={{ color: slides[currentSlide].accent }}>{slides[currentSlide].modelName}</span>
                                         </span>
                                     </div>
                                 </motion.div>
                             </motion.div>
                         </AnimatePresence>
+
+                        {/* Gradient Overlay for Text Readability */}
+                        <div style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '50%',
+                            background: 'linear-gradient(to top, #000 0%, transparent 100%)',
+                            zIndex: 1,
+                            pointerEvents: 'none'
+                        }}></div>
 
                         {/* Slider Navigation - Animated */}
                         <motion.div
@@ -324,6 +317,7 @@ const Home = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1, duration: 0.5 }}
+                            style={{ zIndex: 10 }}
                         >
                             <FaChevronLeft />
                         </motion.div>
@@ -333,6 +327,7 @@ const Home = () => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1, duration: 0.5 }}
+                            style={{ zIndex: 10 }}
                         >
                             <FaChevronRight />
                         </motion.div>

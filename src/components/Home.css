@@ -29,7 +29,7 @@
     position: relative;
     width: 100%;
     max-width: 1200px;
-    height: 450px;
+    height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,54 +220,81 @@
 /* Tech Badge */
 .slide-badge-container {
     position: absolute;
-    bottom: -50px;
-    left: 50%;
+    bottom: 60px;
+    left: 70%;
     transform: translateX(-50%);
     z-index: 10;
 }
 
 .tech-badge {
-    background: rgba(10, 10, 10, 0.4);
+    background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 4px solid currentColor;
-    /* Takes color from inline style on span usually, but here fixed or inherited */
-    padding: 20px 30px;
+    padding: 15px 40px;
     display: flex;
     align-items: center;
     gap: 20px;
-    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+    /* Complex Cyber Clip Path */
+    clip-path: polygon(15px 0,
+            100% 0,
+            100% calc(100% - 15px),
+            calc(100% - 15px) 100%,
+            0 100%,
+            0 15px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
+    transition: transform 0.3s, background 0.3s;
+    position: relative;
+    min-width: 300px;
+}
+
+.tech-badge::before {
+    content: 'LIVE SPEC';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 0.6rem;
+    background: currentColor;
+    /* Matches the accent color */
+    color: #000;
+    padding: 2px 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
 }
 
 .tech-badge:hover {
     transform: translateY(-5px);
-    background: rgba(20, 20, 20, 0.6);
+    background: rgba(20, 20, 20, 0.8);
 }
 
 .tech-id {
     font-family: 'Syncopate', sans-serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.06);
     line-height: 1;
     position: absolute;
     right: 10px;
-    top: -10px;
+    top: 50%;
+    transform: translateY(-50%);
     pointer-events: none;
+    z-index: 0;
 }
 
 .tech-name {
+    position: relative;
+    z-index: 1;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     letter-spacing: 2px;
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+    line-height: 1;
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-bg img {

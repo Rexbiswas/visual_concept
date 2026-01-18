@@ -28,7 +28,7 @@ const Navbar = () => {
                 {/* Desktop Links */}
                 <div className={`navlinks ${isOpen ? 'active' : ''} `}>
                     <ul>
-                        {['Home', 'About', 'Features', 'Blogs', 'Drive'].map((item, index) => (
+                        {['Home', 'About', 'Features', 'Blogs'].map((item, index) => (
                             <motion.li
                                 key={item}
                                 initial={{ opacity: 0, y: -20 }}
@@ -46,7 +46,9 @@ const Navbar = () => {
                         ))}
                     </ul>
                     <div className='nav-btn-mobile'>
-                        <button>Explore our car</button>
+                        <Link to="/explore">
+                            <button>Explore our car</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -57,7 +59,9 @@ const Navbar = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 1, duration: 0.5 }}
                     >
-                        <button>Explore our car</button>
+                        <Link to="/explore">
+                            <button>Explore our car</button>
+                        </Link>
                     </motion.div>
 
                     <div className='hamburger' onClick={toggleMenu}>

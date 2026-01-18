@@ -5,7 +5,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Features from './components/Features'
 import Blogs from './components/Blogs'
-import Drive from './components/Drive'
+import ExploreCar from './components/ExploreCar'
 import CustomCursor from './components/CustomCursor'
 import Footer from './components/Footer'
 
@@ -19,7 +19,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/features" element={<Features />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/drive" element={<Drive />} />
+        <Route path="/explore" element={<ExploreCar />} />
+
       </Routes>
       <Footer />
     </>
