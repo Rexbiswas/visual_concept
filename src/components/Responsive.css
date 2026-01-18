@@ -761,3 +761,65 @@
         }
     }
 }
+
+/* --- Blogs Page Responsive --- */
+
+/* Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .blogs-title {
+        font-size: 5rem;
+    }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .blogs-container {
+        padding-top: 100px;
+    }
+
+    .blogs-title {
+        font-size: 3.5rem;
+    }
+
+    .blogs-grid {
+        grid-template-columns: 1fr;
+        padding: 0 5% 60px;
+    }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    .blogs-title {
+        font-size: 2.5rem;
+    }
+
+    .blogs-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-deco-line {
+        display: none;
+        /* Hide line on small screens to reduce clutter */
+    }
+
+    .blog-card {
+        border-radius: 10px;
+    }
+
+    .blog-image-wrapper {
+        height: 180px;
+    }
+
+    .blog-content {
+        padding: 20px;
+    }
+
+    .blog-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .blog-excerpt {
+        font-size: 0.9rem;
+    }
+}

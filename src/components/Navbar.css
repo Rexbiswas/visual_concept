@@ -114,14 +114,20 @@ nav::after {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: color 0.3s ease;
+    position: relative;
+    /* Needed for ::after positioning */
+    display: inline-block;
+    /* Ensure width calculation works for ::after */
 }
 
-.navlinks ul li a:hover {
+.navlinks ul li a:hover,
+.navlinks ul li a.active {
     color: cyan;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-.navlinks ul li::after {
+/* Underline Effect on Anchor */
+.navlinks ul li a::after {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -133,7 +139,8 @@ nav::after {
     transition: width 0.3s ease;
 }
 
-.navlinks ul li:hover::after {
+.navlinks ul li a:hover::after,
+.navlinks ul li a.active::after {
     width: 100%;
 }
 

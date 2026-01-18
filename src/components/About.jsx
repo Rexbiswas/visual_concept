@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -148,9 +148,54 @@ const About = () => {
         { title: "CONNECTION", desc: "Seamless interface between man and machine." },
     ];
 
+
+    // --- Car Slider Logic ---
+    const [activeSlide, setActiveSlide] = useState(0);
+
+    const conceptCars = [
+        {
+            id: 1,
+            name: "MERCEDES AVTR",
+            img: "https://i.ytimg.com/vi/ekgUjyWe1Yc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB6RhGZ4Hmx9Dfn_Bk_ba0kFRyvfQ",
+            desc: "Powered by quantum computing and neural link interfaces, our vehicles become an extension of your own nervous system. Thought becomes motion. Intention becomes reality.",
+            stats: {
+                sync: "98.4%",
+                ops: "128 TFLOPS",
+                temp: "12°K",
+                latency: "0.002ms"
+            }
+        },
+        {
+            id: 2,
+            name: "AUDI SKYSPHERE",
+            img: "https://www.carscoops.com/wp-content/uploads/2021/08/Audi-skysphere-concept-PB21-03-1-1024x555.jpg",
+            desc: "Adaptive wheelbase technology allows the vehicle to physically transform from a grand tourer into an agile sports car. Experience the duality of freedom.",
+            stats: {
+                sync: "100%",
+                ops: "256 TFLOPS",
+                temp: "295°K",
+                latency: "0.001ms"
+            }
+        },
+        {
+            id: 3,
+            name: "TESLA CYBERTRUCK",
+            img: "https://static1.squarespace.com/static/6151d38ea56f9d31cf76ec07/t/6799afac5b4aaa57ea830b52/1738125230677/tesla-cybertruck_19+%281%29.jpg?format=1500w",
+            desc: "The companion that learns from you. Digital intelligence meets geometric precision in a form that exists between the virtual and physical realms.",
+            stats: {
+                sync: "94.2%",
+                ops: "180 TFLOPS",
+                temp: "310°K",
+                latency: "0.005ms"
+            }
+        }
+    ];
+
+    const nextSlide = () => setActiveSlide((prev) => (prev + 1) % conceptCars.length);
+    const prevSlide = () => setActiveSlide((prev) => (prev - 1 + conceptCars.length) % conceptCars.length);
+
     return (
         <div className="about-container" ref={containerRef}>
-
             {/* --- Hero Section --- */}
             <header className="about-hero">
                 <div className="hero-glitch-bg"></div>
@@ -170,23 +215,55 @@ const About = () => {
                 </motion.div>
             </header>
 
-            {/* --- Split "Unexpected" Section --- */}
-            <section className="split-section">
+            {/* --- Split "Unexpected" Slider Section --- */}
+            <section className="split-section slider-mode">
                 <div className="split-side left">
                     <div className="tech-image-wrapper">
-                        <img src="https://i.ytimg.com/vi/ekgUjyWe1Yc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB6RhGZ4Hmx9Dfn_Bk_ba0kFRyvfQ" alt="Vision Concept" />
+                        {/* Image Transition */}
+                        <AnimatePresence mode='wait'>
+                            <motion.img
+                                key={conceptCars[activeSlide].id}
+                                src={conceptCars[activeSlide].img}
+                                alt={conceptCars[activeSlide].name}
+                                initial={{ opacity: 0, scale: 1.1 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                            />
+                        </AnimatePresence>
+
                         <div className="img-overlay"></div>
                         <div className="img-corner-deco"></div>
+
+                        {/* Navigation Overlay */}
+                        <div className="slider-nav">
+                            <button onClick={prevSlide} className="nav-arrow prev">&lt;</button>
+                            <span className="slide-counter">0{activeSlide + 1} / 0{conceptCars.length}</span>
+                            <button onClick={nextSlide} className="nav-arrow next">&gt;</button>
+                        </div>
                     </div>
-                    <h1>Mercedes AVTR</h1>
+
+                    <motion.h1
+                        key={conceptCars[activeSlide].name}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        {conceptCars[activeSlide].name}
+                    </motion.h1>
                 </div>
+
                 <div className="split-side right">
                     <div className="split-content tech-text-content">
                         <h2>THE <span style={{ color: 'cyan' }}>TECHNOLOGY</span></h2>
-                        <p>
-                            Powered by quantum computing and neural link interfaces, our vehicles become an extension of your own nervous system.
-                            Thought becomes motion. Intention becomes reality.
-                        </p>
+                        <motion.p
+                            key={conceptCars[activeSlide].desc}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4 }}
+                        >
+                            {conceptCars[activeSlide].desc}
+                        </motion.p>
 
                         {/* Real-time Specs Dashboard */}
                         <div className="tech-specs-dashboard">
@@ -199,25 +276,25 @@ const About = () => {
                                 <div className="spec-item">
                                     <label>NEURAL SYNC</label>
                                     <div className="tech-progress-bg">
-                                        <div className="tech-progress-fill" style={{ width: '98%' }}></div>
+                                        <div className="tech-progress-fill" style={{ width: conceptCars[activeSlide].stats.sync }}></div>
                                     </div>
-                                    <div className="spec-val">98.4%</div>
+                                    <div className="spec-val">{conceptCars[activeSlide].stats.sync}</div>
                                 </div>
                                 <div className="spec-item">
                                     <label>QUANTUM OPS</label>
                                     <div className="tech-graph-line"></div>
-                                    <div className="spec-val">128 TFLOPS</div>
+                                    <div className="spec-val">{conceptCars[activeSlide].stats.ops}</div>
                                 </div>
                                 <div className="spec-item">
                                     <label>CORE TEMP</label>
-                                    <div className="spec-val cold-val">12°K</div>
+                                    <div className="spec-val cold-val">{conceptCars[activeSlide].stats.temp}</div>
                                     <div className="tech-bar-chunks">
                                         <span></span><span></span><span></span><span style={{ opacity: 0.3 }}></span>
                                     </div>
                                 </div>
                                 <div className="spec-item">
                                     <label>LATENCY</label>
-                                    <div className="spec-val">0.002ms</div>
+                                    <div className="spec-val">{conceptCars[activeSlide].stats.latency}</div>
                                 </div>
                             </div>
                         </div>

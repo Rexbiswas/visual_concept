@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import './Navbar.css';
@@ -35,9 +35,13 @@ const Navbar = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                             >
-                                <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
+                                <NavLink
+                                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                                    onClick={() => setIsOpen(false)}
+                                    className={({ isActive }) => isActive ? "active" : ""}
+                                >
                                     {item}
-                                </Link>
+                                </NavLink>
                             </motion.li>
                         ))}
                     </ul>
