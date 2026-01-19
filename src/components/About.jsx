@@ -216,7 +216,7 @@ const About = () => {
             </header>
 
             {/* --- Split "Unexpected" Slider Section --- */}
-            <section className="split-section slider-mode">
+            <section className="split-section slider-mode" style={{padding:"10px"}}>
                 <div className="split-side left">
                     <div className="tech-image-wrapper">
                         {/* Image Transition */}

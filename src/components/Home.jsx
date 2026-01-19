@@ -364,7 +364,8 @@ const Home = () => {
                         </motion.div>
 
                         <motion.h1 className="hero-title" variants={fadeUp}>
-                            BEYOND <br />
+                            <span style={{fontSize:"100px"}}>BEYOND</span> 
+                            <br />
                             <span className="hollow" data-text="REALITY">
                                 <ScrambleText text="REALITY" />
                             </span>
@@ -378,7 +379,7 @@ const Home = () => {
                         <motion.div className="cta-group" variants={fadeUp}>
                             <Magnetic>
                                 <button className="btn-primary">
-                                    Discover More
+                                    <a href="">Discover More</a>
                                 </button>
                             </Magnetic>
                             <Magnetic>
@@ -386,7 +387,7 @@ const Home = () => {
                                     <div className="play-icon-box">
                                         <FaPlay style={{ fontSize: '0.6em' }} />
                                     </div>
-                                    Watch Teaser
+                                    <a href="">Watch Teaser</a>
                                 </button>
                             </Magnetic>
                         </motion.div>
