@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Html, OrbitControls, useGLTF, Stage, Environment, ContactShadows, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
@@ -54,12 +54,35 @@ const MovingLight = () => {
 };
 
 const ExploreCar = ({ modelPath, scale = 1 }) => {
+    // Responsive Camera State
+    const [cameraConfig, setCameraConfig] = useState({ position: [6, 2, 8], fov: 35 });
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                // Mobile: Move camera back and increase FOV slightly
+                setCameraConfig({ position: [10, 4, 14], fov: 45 });
+            } else if (width < 1024) {
+                // Tablet
+                setCameraConfig({ position: [8, 3, 11], fov: 40 });
+            } else {
+                // Desktop
+                setCameraConfig({ position: [6, 2, 8], fov: 35 });
+            }
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     // If no model path provided, don't render or render default
     if (!modelPath) return null;
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
-            <Canvas shadows camera={{ position: [6, 2, 8], fov: 35 }}>
+            <Canvas shadows dpr={[1, 2]} camera={cameraConfig}>
                 <fog attach="fog" args={['#050505', 5, 25]} />
                 <ambientLight intensity={0.5} />
                 <MovingLight />
@@ -70,7 +93,6 @@ const ExploreCar = ({ modelPath, scale = 1 }) => {
                         <GenericCarModel modelPath={modelPath} scale={scale} />
                     </Stage>
                     <ContactShadows resolution={1024} scale={50} blur={2} opacity={0.5} far={10} color="#000000" />
-                    {/* Sparkles removed */}
                 </React.Suspense>
 
                 <OrbitControls

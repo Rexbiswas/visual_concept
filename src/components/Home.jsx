@@ -115,7 +115,7 @@ const ParallaxCard = ({ children, speed = 10, className }) => {
 
 
 
-const LamboModel = new URL('../assets/lamborghini_terzo_millennio.glb', import.meta.url).href;
+const LamboModel = new URL('../assets/supra_csr.glb', import.meta.url).href;
 const BugattiModel = new URL('../assets/bugatti_-_la_voiture_noire.glb', import.meta.url).href;
 const KoenigseggModel = new URL('../assets/2019__koenigsegg_jesko.glb', import.meta.url).href;
 
@@ -147,11 +147,11 @@ const Home = () => {
     const slides = [
         {
             id: '01',
-            brand: 'Lamborghini',
-            modelName: 'Terzo-Millennio',
+            brand: 'Supra',
+            modelName: 'CSR',
             accent: '#00ffff',
             model: LamboModel,
-            modelScale: 2.5,
+            modelScale: 180,
             stats: { acceleration: 2.9, topSpeed: 350, range: 450 }
         },
         {

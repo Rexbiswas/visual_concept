@@ -101,3 +101,41 @@
         opacity: 1;
     }
 }
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1024px) {
+    .ui-header h1 {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-ui-interactive {
+        padding: 20px;
+        justify-content: flex-end;
+        /* Ensure content stays at bottom */
+    }
+
+    .ui-header h1 {
+        font-size: 2.5rem;
+        /* Smaller title on mobile */
+        letter-spacing: 0px;
+    }
+
+    .loading-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ui-header h1 {
+        font-size: 2rem;
+    }
+
+    .explore-ui-interactive {
+        padding: 15px;
+        padding-bottom: 80px;
+        /* Space for bottom nav/Chin if needed */
+    }
+}
